@@ -389,53 +389,101 @@ const allies = [
   </section>
 
   <!-- Section: I+D+i (Investigación) -->
-  <section id="idi" class="py-32 bg-white relative reveal">
-    <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row items-start gap-20">
-         <div class="md:w-1/3 sticky top-32">
-            <SectionHeader 
-               centered={false}
-               tag="I+D+i"
-               title="Investigación de Alto Nivel"
-               subtitle="El Centro de Investigación CIE&T es nuestro soporte para fortalecer la tecnociencia interdisciplinaria."
-            />
-            <div class="space-y-4 mt-8">
-               <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 font-bold text-slate-900 flex justify-between items-center group cursor-default">
-                  <span>Grupos de Investigación</span>
-                  <span class="text-[10px] bg-secondary text-white px-3 py-1 rounded-full">Cat C</span>
-               </div>
-               <div class="p-6 rounded-2xl bg-white border border-slate-100 text-slate-500 text-sm font-medium">
-                  Convenios nacionales e internacionales de cooperación técnico-científica.
-               </div>
-            </div>
-         </div>
+  <!-- Section: I+D+i Hub (Investigación, Desarrollo e Innovación) -->
+  <section id="idi" class="py-32 bg-slate-950 px-6 relative overflow-hidden reveal">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#99c221_1px,transparent_1px)] [background-size:40px_40px]"></div>
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]"></div>
 
-         <div class="md:w-2/3 grid gap-10">
-            {[
-               { title: 'Ambiente y Tecnología', desc: 'Desarrollo de modelos para la gestión ambiental territorial.' },
-               { title: 'Sostenibilidad y Competitividad', desc: 'Estrategias productivas con enfoque ecológico y económico.' },
-               { title: 'Diseño y Materiales', desc: 'Optimización de procesos de manufactura y materiales sostenibles.' }
-            ].map(group => (
-               <div class="group p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:border-primary/20 transition-all">
-                  <h4 class="text-2xl font-black text-slate-900 mb-4 tracking-tighter">{group.title}</h4>
-                  <p class="text-slate-500 font-medium">{group.desc}</p>
-               </div>
-            ))}
-            
-            <div class="p-12 rounded-[3.5rem] bg-slate-900 text-white mt-10">
-               <h4 class="text-xl font-bold mb-6 text-primary">Proyectos Destacados</h4>
-               <ul class="space-y-6">
-                  <li class="flex items-start gap-4">
-                     <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2"></div>
-                     <p class="text-slate-300 text-sm leading-relaxed font-medium">Diseño de secador a vacío utilizando hornos microondas modificados.</p>
-                  </li>
-                  <li class="flex items-start gap-4">
-                     <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2"></div>
-                     <p class="text-slate-300 text-sm leading-relaxed font-medium">Evaluación de eficiencia energética en sistemas de iluminación LED residencial.</p>
-                  </li>
-               </ul>
+    <div class="container mx-auto relative z-10">
+      <SectionHeader 
+        tag="Ecosistema Científico"
+        title="I+D+i"
+        subtitle="Nuestra infraestructura para la generación de conocimiento de alto impacto y la transferencia tecnológica regional."
+        centered={true}
+        light={true}
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-20">
+        <!-- Card 1: Centro de Investigación -->
+        <a href="/idi/centro" id="idi-centro" class="group p-10 rounded-[4rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-700 flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-3xl bg-primary/20 flex items-center justify-center text-primary mb-10 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 5.9a7 7 0 1 1-9 12.1z"/><path d="M11 20v-3a2 2 0 0 1 4 0v3"/></svg>
             </div>
-         </div>
+            <h4 class="text-3xl font-black text-white mb-6 tracking-tightest">Centro de Investigación E&T</h4>
+            <p class="text-slate-400 text-lg leading-relaxed font-medium mb-8">
+              El soporte técnico-científico para el fortalecimiento de la tecnociencia regional, integrando redes globales de conocimiento.
+            </p>
+          </div>
+          <div class="flex items-center justify-between">
+             <div class="flex items-center gap-4">
+                <span class="text-[10px] bg-secondary text-white px-4 py-1.5 rounded-full font-black uppercase tracking-widest">Cat C MinCiencias</span>
+             </div>
+             <span class="text-primary font-black text-[10px] uppercase tracking-widest flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                Ver Detalles <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+             </span>
+          </div>
+        </a>
+
+        <!-- Card 2: Grupos de Investigación -->
+        <div id="idi-grupos" class="p-10 rounded-[4rem] bg-gradient-to-br from-slate-900 to-slate-950 border border-white/5 shadow-2xl relative overflow-hidden">
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-8">
+              <h4 class="text-2xl font-black text-white tracking-widest uppercase">Grupos de Investigación</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            
+            <div class="space-y-4">
+              {[
+                { id: 'idi-ambiente', name: 'Ambiente y Tecnología', desc: 'Sinergia para la conservación territorial.', href: '/idi/ambiente' },
+                { id: 'idi-dimmano', name: 'Dimmano', desc: 'Diseño, Manufactura, Materiales y Nanotecnología.', href: '/idi/dimmano' },
+                { id: 'idi-sostenibilidad', name: 'Sostenibilidad y Competitividad', desc: 'Modelos de crecimiento para el Caribe.', href: '/idi/sostenibilidad' }
+              ].map(group => (
+                <a href={group.href} id={group.id} class="block p-6 rounded-3xl bg-white/5 border border-white/5 hover:border-primary/20 hover:bg-white/[0.07] transition-all group/item">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-white font-bold tracking-tight mb-1 group-hover/item:text-primary transition-colors">{group.name}</p>
+                      <p class="text-slate-500 text-xs font-medium">{group.desc}</p>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-white/20 group-hover/item:text-primary transition-all translate-x-[-10px] group-hover/item:translate-x-0"><path d="m9 18 6-6-6-6"/></svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Proyectos e Innovación -->
+        <div id="idi-proyectos" class="group relative overflow-hidden rounded-[4rem] bg-slate-900 h-96 lg:h-auto">
+          <img 
+            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+            class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-[3s]" 
+            alt="Innovación"
+          />
+          <div class="absolute inset-0 p-12 flex flex-col justify-end">
+            <h4 class="text-3xl font-black text-white mb-4">Proyectos e Innovación</h4>
+            <p class="text-slate-300 text-sm mb-10 max-w-sm leading-relaxed font-medium">Lideramos el escalamiento de soluciones tecnológicas de nivel TRL 4 a TRL 7 para el sector productivo.</p>
+            <Button variant="primary" size="sm" href="#proyectos" class="w-fit">Portafolio de Innovación</Button>
+          </div>
+        </div>
+
+        <!-- Card 4: Publicaciones & Revistas -->
+        <div class="group p-10 rounded-[4rem] bg-white border border-slate-200 flex flex-col justify-between">
+          <div>
+            <span class="text-secondary font-black text-[10px] uppercase tracking-[0.4em] mb-6 block">Divulgación</span>
+            <h4 class="text-3xl font-black text-slate-950 mb-6 font-display leading-tight">Producción Académica e <br/> Indexación Científica</h4>
+            <p class="text-slate-500 text-lg leading-relaxed font-medium mb-10">
+              Gestión editorial a través de sistemas OJS para conectar a la comunidad científica global.
+            </p>
+          </div>
+          <div class="flex gap-4">
+            <Button variant="outline" size="sm" href="#revistas" class="text-slate-900 border-slate-200">Ver Revistas</Button>
+            <div class="flex -space-x-4">
+               {[1,2,3].map(i => <div class="w-10 h-10 rounded-full border-4 border-white bg-slate-100 flex items-center justify-center text-[10px] font-black text-slate-400">R{i}</div>)}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
