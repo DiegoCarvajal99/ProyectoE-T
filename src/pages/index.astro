@@ -1,0 +1,638 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProfileCard from '../components/ProfileCard.astro';
+
+const strategicPillars = [
+  {
+    title: 'Misión',
+    description: 'Coadyuvar en la generación de soluciones que promuevan un desarrollo territorial equilibrado, a través de la integración de la ciencia, la tecnología y la innovación con el conocimiento local y regional.',
+    icon: 'target'
+  },
+  {
+    title: 'Visión',
+    description: 'Para el 2030, seremos una organización científica y tecnológica líder en el Caribe Colombiano, posicionada por su capacidad de generar soluciones innovadoras y sostenibles.',
+    icon: 'compass'
+  },
+  {
+    title: 'Nuestros Valores',
+    list: [
+      'Rigor Científico', 'Ética Profesional', 'Innovación Social', 
+      'Compromiso Territorial', 'Sostenibilidad Ambiental', 'Cooperación Técnica'
+    ],
+    icon: 'shield'
+  }
+];
+
+const stats = [
+  { label: 'Hectáreas Protegidas', value: '1.2k' },
+  { label: 'Proyectos IA/IoT', value: '15' },
+  { label: 'Publicaciones Científicas', value: '45' },
+  { label: 'Investigadores Senior', value: '12' }
+];
+
+const projects = [
+  {
+    id: '01',
+    title: 'Nodos de Reforestación con Drones',
+    subtitle: 'Uso de drones y siembra aérea para reforestación masiva de ecosistemas estratégicos.',
+    category: 'Tecnología Aplicada',
+    tag: 'Drones',
+    image: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    size: 'large',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 11 3-9 15 13-8 3-10-7Z"/><path d="M12 13v9"/><path d="m12 13 3.5 3.5"/><path d="m9.2 16.6 2.8-3.6"/></svg>`
+  },
+  {
+    id: '02',
+    title: 'Monitorización Hídrica IoT',
+    subtitle: 'Sensores IoT para el control en tiempo real de la calidad del agua y parámetros físicos.',
+    category: 'Gestión de Recursos',
+    tag: 'IoT',
+    image: 'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    size: 'normal',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"/><path d="m16 8-4 4-4-4"/><path d="M12 22a7 7 0 0 0 7-7H5a7 7 0 0 0 7 7Z"/></svg>`
+  },
+  {
+    id: '03',
+    title: 'Algoritmos de Biodiversidad',
+    subtitle: 'Modelos de Redes Neurales para la identificación automática de especies en peligro.',
+    category: 'Ciencia de Datos',
+    tag: 'IA',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    size: 'tall',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>`
+  },
+  {
+    id: '04',
+    title: 'Red Fotovoltaica Inteligente',
+    subtitle: 'Optimización de microrredes solares para comunidades aisladas del territorio.',
+    category: 'Sostenibilidad',
+    tag: 'Solar',
+    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    size: 'normal',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`
+  },
+  {
+    id: '05',
+    title: 'Análisis Satelital del Territorio',
+    subtitle: 'Monitoreo satelital para el control de la deforestación y el uso productivo del suelo.',
+    category: 'Vigilancia de Bosques',
+    tag: 'Satélite',
+    image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    size: 'large',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8.5"/><path d="M18 3v6"/><path d="M21 6h-6"/></svg>`
+  }
+];
+
+const team = {
+  main: [
+    {
+      name: 'Stalyn Yasid Guerrero Gómez',
+      degree: 'Magister en Ciencias Estadísticas',
+      description: 'Líder científico enfocado en el análisis masivo de datos ambientales y modelos predictivos para la toma de decisiones territoriales.',
+      role: 'Director Científico',
+      main: true
+    },
+    {
+      name: 'Roger Lenin Maya Martínez',
+      degree: 'Magister en Educación',
+      description: 'Especialista en pedagogía tecnológica y coordinación de programas de formación no formal en el Instituto E&T.',
+      role: 'Coordinador Académico',
+      main: true
+    },
+    {
+      name: 'Fernando Ramírez Muñoz',
+      degree: 'Doctor en Ciencias Naturales para el Desarrollo',
+      description: 'Investigador Senior especializado en sostenibilidad y regeneración ecosistémica mediante tecnociencia aplicada.',
+      role: 'Investigador Principal',
+      main: true
+    }
+  ],
+  others: [
+    { name: 'Andrea Ávila Fuentes', degree: 'Ingeniera Sanitaria y Ambiental', role: 'Investigadora' },
+    { name: 'Jorge Villadiego Lorduy', degree: 'Doctor en Ciencias Naturales', role: 'Investigador Senior' },
+    { name: 'Lilliana María Piedra Castro', degree: 'Doctora en Ciencias Naturales', role: 'Investigadora' },
+    { name: 'Omar Díaz Hernández', degree: 'Magister en Estadística Aplicada', role: 'Analista de Datos' },
+    { name: 'Pedro Luis Payares Ramos', degree: 'Ingeniero Sanitario', role: 'Investigador' }
+  ]
+};
+
+const academyFeatures = [
+  { title: 'Cursos Cortos', detail: 'Profundización técnica con tutoría para grupos de 15+ personas en áreas ambientales.', icon: 'book' },
+  { title: 'MOOCs Corporativos', detail: 'Formación abierta y autónoma gestionada a través de AprendeNet.', icon: 'globe' },
+  { title: 'Metodología B-Learning', detail: 'Sincronicidad y asincronicidad para flexibilizar la formación técnica.', icon: 'users' },
+  { title: 'Microlearning & PBL', detail: 'Aprendizaje basado en proyectos y píldoras de conocimiento de alto impacto.', icon: 'cpu' },
+  { title: 'Flipped School', detail: 'Inversión del aula para potenciar la práctica técnica y científica.', icon: 'refresh-ccw' }
+];
+
+const allies = [
+  { name: 'Fundación Santa Isabel', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_fundacion_santa_isabel.png' },
+  { name: 'CORCIEM', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_corciem.png' },
+  { name: 'Creinn-Tec', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_creinnt_ec.png' },
+  { name: 'Universidad de la Amazonia', logo: 'https://www.uniamazonia.edu.co/images/logos/logo_uniamazonia.png' },
+  { name: 'GATEWAY TI', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_gatewayti.png' },
+  { name: 'CIFE', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_cife.png' },
+  { name: 'AprendeNET', logo: 'https://aprendenet.online/wp-content/uploads/2022/10/logo-aprendenet.png' },
+  { name: 'UPTC', logo: 'https://www.uptc.edu.co/export/sites/default/portal/assets/images/logo-uptc.png' },
+  { name: 'Geobicom', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_geobicom.png' },
+  { name: 'Asociación de Geógrafos del Caribe', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_geografos.png' },
+  { name: 'Universidad de Córdoba', logo: 'https://www.unicordoba.edu.co/wp-content/uploads/2021/05/logo-unicordoba.png' },
+  { name: 'Fundación del Sinú', logo: 'https://environmenttechnologyfoundation.org/wp-content/uploads/2021/05/logo_sinu.png' }
+];
+---
+
+<Layout title="Environment Technology Foundation | Innovación Regenerativa">
+  <!-- Hero Section -->
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-6 bg-slate-950">
+    <div class="absolute inset-0 z-0 tracking-tighter">
+      <img 
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+        alt="Tech and Nature Hero" 
+        class="w-full h-full object-cover brightness-[0.35] scale-110"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto relative z-10 text-center animate-fade-in">
+      <div class="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-full mb-10 shadow-2xl">
+        <span class="w-2.5 h-2.5 bg-primary rounded-full animate-pulse shadow-[0_0_10px_#99c221]"></span>
+        <span class="text-white text-[10px] font-black uppercase tracking-[0.25em]">Vanguardia en Sostenibilidad</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-black text-white mb-14 max-w-5xl mx-auto tracking-tightest leading-[1.1] drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+        Somos una organización sin ánimo de lucro dedicada a la <span class="text-gradient">investigación, desarrollo e innovación (I+D+i)</span> en las áreas ambiental y tecnológica.
+      </h1>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+        <Button size="lg" variant="primary" href="#proyectos" class="shadow-2xl shadow-primary/30">Explorar Proyectos</Button>
+        <Button size="lg" variant="outline" href="#mision" class="bg-white/5 border-white/30 text-white backdrop-blur-sm hover:bg-white/10">Nuestra Misión</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Sobre Nosotros (Reference Adaptation: Image + Text) -->
+  <section id="mision" class="py-32 bg-white relative overflow-hidden">
+    <!-- Subtle background glow -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
+    
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32">
+        
+        <!-- Left Column: Nature + Tech Overlay -->
+        <div class="relative group order-2 lg:order-1">
+          <div class="relative aspect-square md:aspect-[4/3] rounded-[3.5rem] overflow-hidden shadow-2xl ring-1 ring-slate-200/50">
+            <img 
+              src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              alt="Nature and Science" 
+              class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-1000"
+            />
+            <!-- SVG Tech Network Overlay -->
+            <div class="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-700">
+               <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="80" cy="120" r="3" fill="#99c221" class="animate-pulse" />
+                  <circle cx="150" cy="80" r="3" fill="#99c221" />
+                  <circle cx="280" cy="140" r="3" fill="#a38c4b" />
+                  <circle cx="320" cy="220" r="3" fill="#99c221" />
+                  <circle cx="120" cy="300" r="3" fill="#99c221" />
+                  <circle cx="200" cy="340" r="3" fill="#1b3a6d" />
+                  <path d="M80 120 L150 80 L280 140 L320 220 L200 340 L120 300 Z" fill="none" stroke="white" stroke-width="1" stroke-dasharray="4 4" class="opacity-40" />
+                  <line x1="80" y1="120" x2="280" y2="140" stroke="white" stroke-width="0.5" class="opacity-20" />
+                  <line x1="150" y1="80" x2="120" y2="300" stroke="white" stroke-width="0.5" class="opacity-20" />
+               </svg>
+            </div>
+            <div class="absolute bottom-10 left-10 right-10 p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20">
+               <p class="text-white text-[10px] font-black uppercase tracking-[0.4em] drop-shadow-sm">Ciencia Aplicada al Territorio</p>
+            </div>
+          </div>
+          <div class="absolute -z-10 -bottom-6 -left-6 w-full h-full bg-emerald-50 rounded-[4rem] rotate-2"></div>
+        </div>
+
+        <!-- Right Column: Content -->
+        <div class="order-1 lg:order-2 space-y-10">
+          <div>
+            <h2 class="text-primary font-black text-[12px] uppercase tracking-[0.5em] mb-6">Environment & Technology</h2>
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 tracking-tightest leading-[1.1]">
+               Quiénes <br/> Somos
+            </h1>
+          </div>
+
+          <div class="space-y-8">
+            <p class="text-xl md:text-2xl font-bold text-slate-700 leading-relaxed">
+               La <span class="bg-primary/10 text-primary px-3 rounded-xl font-black">Environment & Technology Foundation (ETF)</span> es una organización dedicada a la investigación aplicada y el desarrollo tecnológico, con un fuerte enfoque en la sostenibilidad territorial.
+            </p>
+            
+            <p class="text-xl md:text-2xl font-bold text-slate-700 leading-relaxed">
+               Buscamos generar impactos positivos a través de la transferencia de conocimiento, integrando la tecnociencia con el saber local para coadyubar en soluciones que promuevan un desarrollo equilibrado en las regiones.
+            </p>
+          </div>
+
+          <div>
+             <Button variant="primary" size="lg" href="#proyectos" class="rounded-2xl">Nuestra Trayectoria</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strategic Section: Nuestro Enfoque -->
+      <div class="mt-32 border-t border-slate-100 pt-32">
+        <div class="max-w-4xl mb-24 px-4 text-center lg:text-left">
+           <h2 class="text-primary font-black text-xs uppercase tracking-[0.4em] mb-8">Estrategia Institucional</h2>
+           <h3 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tightest leading-[1.1] mb-10">Enfoque de Impacto</h3>
+           <p class="text-xl md:text-2xl font-bold text-slate-600 leading-relaxed">
+             Nuestro modelo se fundamenta en la generación de impactos positivos sobre el desarrollo de los territorios a través de la transferencia y generación de conocimiento científico de vanguardia.
+           </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 relative z-10">
+          {strategicPillars.map(pillar => (
+            <div class="group relative p-12 rounded-[3.5rem] bg-emerald-50/30 border border-emerald-100 hover:bg-white hover:border-primary/20 transition-all duration-700 hover:shadow-2xl hover:shadow-primary/5 text-center flex flex-col items-center">
+              <div class="bg-white p-6 rounded-3xl w-24 h-24 flex items-center justify-center shadow-lg mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 text-primary">
+                 {pillar.icon === 'target' && <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>}
+                 {pillar.icon === 'compass' && <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>}
+                 {pillar.icon === 'shield' && <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+              </div>
+              
+              <h4 class="text-3xl md:text-4xl font-black text-slate-900 mb-8 tracking-tighter">{pillar.title}</h4>
+              
+              {pillar.description && (
+                <p class="text-slate-600 text-lg md:text-xl leading-relaxed font-bold mb-8">
+                  {pillar.description}
+                </p>
+              )}
+
+              {pillar.list && (
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 w-full">
+                  {pillar.list.map(item => (
+                    <div class="flex items-start justify-center gap-3 bg-white px-5 py-4 rounded-2xl shadow-sm border border-emerald-50 group-hover:border-primary/20 transition-all text-center">
+                       <span class="w-1.5 h-1.5 bg-primary rounded-full shrink-0 mt-2.5"></span>
+                       <span class="text-slate-800 font-bold text-base md:text-lg tracking-tight leading-tight capitalize">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Academia (Instituto E&T) -->
+  <section id="academia" class="py-32 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-20 items-center overflow-visible">
+        <div>
+          <SectionHeader 
+            centered={false}
+            tag="Unidad de Formación"
+            title="Instituto E&T: Democratización del Saber"
+            subtitle="El Instituto E&T es nuestra unidad estratégica cuyo objetivo central es brindar formación de carácter no formal y complementaria en áreas ambientales y tecnológicas."
+          />
+          
+          <div class="space-y-8 mb-12">
+            <p class="text-lg text-slate-600 font-medium leading-relaxed">
+              Creado en junio de 2020, el Instituto promueve el intercambio y aprendizaje de nuevos conocimientos, fortaleciendo las capacidades científicas y técnicas mediante procesos formativos de vanguardia.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
+            {academyFeatures.map(feature => (
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <h4 class="text-slate-900 font-black text-lg mb-2 tracking-tight">{feature.title}</h4>
+                <p class="text-slate-500 text-xs font-medium leading-relaxed">{feature.detail}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div class="mt-12">
+             <Button variant="primary" href="https://aprendenet.online/" class="rounded-2xl">Plataforma AprendeNet</Button>
+          </div>
+        </div>
+        
+        <div class="relative">
+           <div class="absolute inset-0 bg-primary/5 rounded-[4rem] rotate-3 scale-105 -z-10"></div>
+           <div class="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100">
+              <h4 class="text-2xl font-black text-slate-900 mb-8 tracking-tighter">Metodología Innovadora</h4>
+              <div class="space-y-8">
+                 <div class="flex items-start gap-6 pb-8 border-b border-slate-100">
+                    <div class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary font-black">01</div>
+                    <div>
+                       <p class="text-slate-900 font-bold mb-1">B-Learning</p>
+                       <p class="text-slate-500 text-sm">Encuentros sincrónicos y asincrónicos para flexibilizar el aprendizaje.</p>
+                    </div>
+                 </div>
+                 <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black">02</div>
+                    <div>
+                       <p class="text-slate-900 font-bold mb-1">Impacto Real</p>
+                       <p class="text-slate-500 text-sm">Proyectos basados en problemas socioambientales reales.</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Revistas Científicas -->
+  <section id="revistas" class="py-32 bg-white px-6">
+    <div class="container mx-auto">
+      <SectionHeader 
+        tag="Publicaciones"
+        title="Divulgación Científica Global"
+        subtitle="Plataformas OJS para la configuración de redes especializadas entre científicos de diferentes latitudes."
+      />
+      
+      <div class="grid md:grid-cols-2 gap-12 mt-12">
+        <div class="group relative overflow-hidden rounded-[3.5rem] bg-slate-900 aspect-[16/9] md:aspect-auto md:h-[450px]">
+          <img src="https://images.unsplash.com/photo-1532187875605-186c7131ef24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Revista E&T" class="absolute inset-0 w-full h-full object-cover brightness-[0.4] group-hover:scale-105 transition-transform duration-[2s]" />
+          <div class="absolute inset-0 p-12 flex flex-col justify-end">
+            <span class="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-4">Journal of Tecnoscience</span>
+            <h4 class="text-3xl font-black text-white mb-6">Revista Environment & Technology</h4>
+            <p class="text-slate-300 text-sm max-w-md mb-10 leading-relaxed">Configurando redes para fortalecer el trabajo entre científicos globales en soluciones socioambientales.</p>
+            <Button variant="primary" size="sm" href="https://revistaet.environmenttechnologyfoundation.org/" class="w-fit">Ver Publicaciones</Button>
+          </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-[3.5rem] bg-slate-900 aspect-[16/9] md:aspect-auto md:h-[450px]">
+          <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dee62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Revista Mimesis" class="absolute inset-0 w-full h-full object-cover brightness-[0.4] group-hover:scale-105 transition-transform duration-[2s]" />
+          <div class="absolute inset-0 p-12 flex flex-col justify-end">
+            <span class="text-secondary font-black text-[10px] uppercase tracking-[0.4em] mb-4">Architectural Science</span>
+            <h4 class="text-3xl font-black text-white mb-6">Revista Mimesis</h4>
+            <p class="text-slate-300 text-sm max-w-md mb-10 leading-relaxed">Ciencia de la representación aplicada al urbanismo, paisaje y sostenibilidad tecnológica.</p>
+            <Button variant="outline" size="sm" href="https://mimesis.environmenttechnologyfoundation.org/" class="w-fit border-white/20 text-white hover:bg-white/10">Explorar Journal</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section (Dark Statistics) -->
+  <section id="impacto" class="py-24 bg-slate-950 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px]"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-12 items-center">
+        {stats.map(stat => (
+          <div class="text-center group">
+            <span class="block text-6xl md:text-8xl font-black text-white mb-2 tracking-tightest group-hover:scale-105 transition-transform duration-500">
+              {stat.value}
+            </span>
+            <span class="block text-primary font-display text-[10px] font-black uppercase tracking-[0.3em]">
+              {stat.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: I+D+i (Investigación) -->
+  <section id="idi" class="py-32 bg-white relative">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-start gap-20">
+         <div class="md:w-1/3 sticky top-32">
+            <SectionHeader 
+               centered={false}
+               tag="I+D+i"
+               title="Investigación de Alto Nivel"
+               subtitle="El Centro de Investigación CIE&T es nuestro soporte para fortalecer la tecnociencia interdisciplinaria."
+            />
+            <div class="space-y-4 mt-8">
+               <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 font-bold text-slate-900 flex justify-between items-center group cursor-default">
+                  <span>Grupos de Investigación</span>
+                  <span class="text-[10px] bg-secondary text-white px-3 py-1 rounded-full">Cat C</span>
+               </div>
+               <div class="p-6 rounded-2xl bg-white border border-slate-100 text-slate-500 text-sm font-medium">
+                  Convenios nacionales e internacionales de cooperación técnico-científica.
+               </div>
+            </div>
+         </div>
+
+         <div class="md:w-2/3 grid gap-10">
+            {[
+               { title: 'Ambiente y Tecnología', desc: 'Desarrollo de modelos para la gestión ambiental territorial.' },
+               { title: 'Sostenibilidad y Competitividad', desc: 'Estrategias productivas con enfoque ecológico y económico.' },
+               { title: 'Diseño y Materiales', desc: 'Optimización de procesos de manufactura y materiales sostenibles.' }
+            ].map(group => (
+               <div class="group p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:border-primary/20 transition-all">
+                  <h4 class="text-2xl font-black text-slate-900 mb-4 tracking-tighter">{group.title}</h4>
+                  <p class="text-slate-500 font-medium">{group.desc}</p>
+               </div>
+            ))}
+            
+            <div class="p-12 rounded-[3.5rem] bg-slate-900 text-white mt-10">
+               <h4 class="text-xl font-bold mb-6 text-primary">Proyectos Destacados</h4>
+               <ul class="space-y-6">
+                  <li class="flex items-start gap-4">
+                     <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2"></div>
+                     <p class="text-slate-300 text-sm leading-relaxed font-medium">Diseño de secador a vacío utilizando hornos microondas modificados.</p>
+                  </li>
+                  <li class="flex items-start gap-4">
+                     <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2"></div>
+                     <p class="text-slate-300 text-sm leading-relaxed font-medium">Evaluación de eficiencia energética en sistemas de iluminación LED residencial.</p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Bento Grid Section -->
+  <section id="proyectos" class="py-32 bg-slate-50 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="flex flex-col md:flex-row items-end justify-between gap-10 mb-20 px-4">
+        <div class="max-w-2xl">
+          <h2 class="text-primary font-display font-black text-xs uppercase tracking-[0.4em] mb-6">Proyectos I+D+i</h2>
+          <h3 class="text-5xl font-black text-slate-900 tracking-tightest leading-tight">
+            Ciencia Aplicada al Territorio
+          </h3>
+        </div>
+        <div class="pb-2">
+          <Button variant="outline" href="/proyectos" class="rounded-2xl border-slate-200">Portafolio</Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:grid-flow-row-dense">
+        {projects.map(project => (
+          <ProjectCard {...project}>
+            <Fragment slot="icon" set:html={project.icon} />
+          </ProjectCard>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Equipo Tecnociéntifico -->
+  <section id="equipo" class="py-32 bg-white overflow-hidden">
+    <div class="container mx-auto px-6">
+      <SectionHeader 
+        tag="Nuestro Equipo"
+        title="Mentes Detrás de la Innovación"
+        subtitle="Un equipo interdisciplinario de magísteres y doctores comprometidos con la tecnociencia ambiental."
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+        {team.main.map(member => (
+          <ProfileCard {...member} />
+        ))}
+      </div>
+
+      <div id="extended-team" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.others.map(member => (
+          <ProfileCard {...member} />
+        ))}
+      </div>
+
+      <div class="flex justify-center mt-16">
+        <button id="toggle-team" class="px-10 py-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-900 font-black text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all">
+          Ver todo el equipo
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Aliados Estratégicos (Infinite Carousel) -->
+  <section id="aliados" class="py-24 bg-white overflow-hidden border-t border-slate-50">
+    <div class="container mx-auto px-6 mb-16 text-center">
+       <span class="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Red de Cooperación</span>
+       <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tightest">Aliados Estratégicos</h2>
+    </div>
+
+    <div class="relative flex overflow-x-hidden group">
+      <div class="py-12 animate-marquee whitespace-nowrap flex items-center gap-12">
+        {allies.concat(allies).map(ally => (
+          <div class="inline-flex flex-col items-center gap-4 px-12 py-10 rounded-[3.5rem] bg-slate-50 border border-slate-100/50 hover:bg-white hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group/item">
+             <div class="w-32 h-16 flex items-center justify-center filter grayscale group-hover/item:grayscale-0 transition-all duration-1000">
+                <img 
+                  src={ally.logo} 
+                  alt={ally.name} 
+                  class="max-w-full max-h-full object-contain opacity-70 group-hover/item:opacity-100 transition-opacity"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                />
+                <div class="hidden text-slate-300 font-black text-[9px] uppercase tracking-widest text-center px-2">
+                   {ally.name}
+                </div>
+             </div>
+             <div class="w-1.5 h-1.5 bg-primary/20 rounded-full group-hover/item:scale-150 group-hover/item:bg-primary transition-all"></div>
+             <span class="text-slate-400 group-hover/item:text-slate-900 font-black text-[9px] uppercase tracking-widest transition-colors scale-90 group-hover/item:scale-100">{ally.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Recursos (Podcast) -->
+  <section id="podcast" class="py-32 bg-slate-950 relative">
+     <div class="container mx-auto px-6">
+        <div class="bg-gradient-to-br from-slate-900 to-slate-950 rounded-[4rem] p-12 md:p-24 border border-white/5 relative overflow-hidden">
+           <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
+           
+           <div class="grid md:grid-cols-2 gap-20 items-center">
+              <div>
+                 <span class="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-8 block">Divulgación Sonora</span>
+                 <h2 class="text-5xl font-black text-white mb-10 tracking-tightest leading-tight">Explora la Ciencia a <br/> través de <span class="text-gradient">nuestros Podcasts</span></h2>
+                 <p class="text-slate-400 text-lg mb-12 font-medium leading-relaxed">Conoce las historias de empoderamiento y los últimos avances tecnológicos en sostenibilidad.</p>
+                 
+                 <div class="space-y-6">
+                    <a href="https://creators.spotify.com/pod/profile/mujeresydesarrollo-eytf/" target="_blank" class="flex items-center justify-between p-6 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
+                       <div class="flex items-center gap-6">
+                          <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                          </div>
+                          <div>
+                             <p class="text-white font-bold tracking-tight">Mujeres y Desarrollo</p>
+                             <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">Spotify for Creators</p>
+                          </div>
+                       </div>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-0 group-hover:opacity-100 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="#" class="flex items-center justify-between p-6 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
+                       <div class="flex items-center gap-6">
+                          <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 10v4"/><path d="M22 10v4"/><path d="M7 6v12"/><path d="M17 6v12"/></svg>
+                          </div>
+                          <div>
+                             <p class="text-white font-bold tracking-tight">Ambiente, Territorio y Tecnología</p>
+                             <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">Programa Radial ETF</p>
+                          </div>
+                       </div>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-0 group-hover:opacity-100 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                 </div>
+              </div>
+              
+              <div class="hidden md:block relative">
+                 <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Podcast Studio" class="rounded-[3rem] shadow-2xl brightness-75 grayscale-[0.5] hover:grayscale-0 transition-all duration-1000" />
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
+
+  <!-- Contact/Newsletter Section -->
+  <section id="contacto" class="py-32 bg-white px-6">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-2 gap-20 items-center bg-slate-50 rounded-[4rem] p-12 md:p-24 border border-slate-100 shadow-2xl shadow-slate-200/50">
+        <div>
+          <SectionHeader 
+            centered={false}
+            tag="Únete a la Causa"
+            title={`¿Tienes un proyecto en mente? \n Hagámoslo realidad.`}
+            subtitle="Buscamos mentes creativas y organizaciones comprometidas con la regeneración del planeta."
+          />
+          
+          <div class="space-y-6 mt-12">
+             <div class="flex items-center gap-5 group">
+                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary shadow-lg border border-slate-100 group-hover:scale-110 transition-transform">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <span class="text-slate-900 font-black tracking-tight text-lg">(+57) 304 224 7552</span>
+             </div>
+          </div>
+        </div>
+
+        <form class="bg-white p-12 rounded-[3rem] shadow-xl border border-slate-100 space-y-6">
+          <input type="text" placeholder="Nombre" class="w-full px-8 py-5 bg-slate-50 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-medium text-slate-900" />
+          <input type="email" placeholder="Correo" class="w-full px-8 py-5 bg-slate-50 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-medium text-slate-900" />
+          <textarea rows="4" placeholder="Mensaje" class="w-full px-8 py-5 bg-slate-50 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-medium text-slate-900 resize-none"></textarea>
+          <Button variant="primary" class="w-full py-6">Enviar Mensaje</Button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const toggleBtn = document.querySelector('#toggle-team');
+  const extendedTeam = document.querySelector('#extended-team');
+
+  toggleBtn?.addEventListener('click', () => {
+    extendedTeam?.classList.toggle('hidden');
+    toggleBtn.textContent = extendedTeam?.classList.contains('hidden') ? 'Ver todo el equipo' : 'Mostrar menos';
+  });
+</script>
+
+<style>
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #ffffff; }
+  ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>

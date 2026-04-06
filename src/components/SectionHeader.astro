@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  tag: string;
+  centered?: boolean;
+}
+
+const { title, subtitle, tag, centered = true } = Astro.props;
+---
+
+<div class:list={["mb-20", centered ? "text-center max-w-4xl mx-auto" : "max-w-2xl text-left"]}>
+  <div class:list={["inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8", centered ? "mx-auto" : ""]}>
+    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+    {tag}
+  </div>
+  <h2 class="text-5xl md:text-6xl font-black text-slate-900 mb-8 tracking-tightest leading-[1.05]">
+    {title}
+  </h2>
+  <p class="text-lg text-slate-500 font-medium leading-relaxed">
+    {subtitle}
+  </p>
+</div>
