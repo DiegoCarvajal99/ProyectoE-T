@@ -183,75 +183,107 @@ const icons = {
 </header>
 
 <script>
-  const toggleBtn = document.querySelector('#menu-toggle');
-  const closeBtn = document.querySelector('#menu-close');
-  const overlay = document.querySelector('#mobile-overlay');
-  const mobileMenu = document.querySelector('#mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  const headerContainer = document.querySelector('#desktop-header');
+  /**
+   * Encapsula la lógica del header para que sea compatible con Astro View Transitions.
+   * Se ejecuta en cada 'astro:page-load' para asegurar que los elementos del nuevo DOM
+   * tengan sus eventos vinculados correctamente.
+   */
+  function initHeader() {
+    const toggleBtn = document.querySelector('#menu-toggle');
+    const closeBtn = document.querySelector('#menu-close');
+    const overlay = document.querySelector('#mobile-overlay');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const headerContainer = document.querySelector('#desktop-header');
 
-  function openMenu() {
-    overlay?.classList.remove('hidden');
-    setTimeout(() => {
-      overlay?.classList.add('opacity-100');
-      mobileMenu?.classList.remove('-translate-x-full');
-    }, 10);
-    
-    document.body.style.overflow = 'hidden';
-    
-    mobileLinks.forEach(link => {
-       link?.classList.remove('translate-x-[-20px]', 'opacity-0');
-       link?.classList.add('translate-x-0', 'opacity-100');
-    });
-  }
+    if (!toggleBtn || !mobileMenu || !overlay) return;
 
-  function closeMenu() {
-    overlay?.classList.remove('opacity-100');
-    mobileMenu?.classList.add('-translate-x-full');
-    
-    mobileLinks.forEach(link => {
-       link?.classList.add('translate-x-[-20px]', 'opacity-0');
-       link?.classList.remove('translate-x-0', 'opacity-100');
-    });
+    // Estado interno para prevenir ejecuciones duplicadas si el evento se dispara varias veces
+    let isTransitioning = false;
 
-    setTimeout(() => {
-      overlay?.classList.add('hidden');
-    }, 500);
-    
-    document.body.style.overflow = '';
-  }
+    function openMenu() {
+      if (isTransitioning) return;
+      isTransitioning = true;
 
-  toggleBtn?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  overlay?.addEventListener('click', closeMenu);
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Mobile Submenu Toggles
-  const subMenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
-  subMenuToggles.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const parent = btn.closest('.mobile-nav-item');
-      const subMenu = parent?.querySelector('.mobile-submenu');
-      const arrow = btn.querySelector('svg');
+      overlay?.classList.remove('hidden');
+      // Forzar un frame para que la transición de opacidad funcione
+      requestAnimationFrame(() => {
+        overlay?.classList.add('opacity-100');
+        overlay?.classList.remove('pointer-events-none');
+        mobileMenu?.classList.remove('-translate-x-full');
+      });
       
-      subMenu?.classList.toggle('hidden');
-      arrow?.classList.toggle('rotate-180');
-    });
-  });
+      document.body.style.overflow = 'hidden';
+      
+      mobileLinks.forEach(link => {
+         link?.classList.remove('translate-x-[-20px]', 'opacity-0');
+         link?.classList.add('translate-x-0', 'opacity-100');
+      });
 
-  // Scroll visibility logic
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      headerContainer?.classList.remove('bg-white/80');
-      headerContainer?.classList.add('bg-white/95', 'shadow-lg', 'border-b-secondary/5');
-    } else {
-      headerContainer?.classList.add('bg-white/80');
-      headerContainer?.classList.remove('bg-white/95', 'shadow-lg', 'border-b-secondary/5');
+      setTimeout(() => { isTransitioning = false; }, 500);
     }
-  });
+
+    function closeMenu() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      overlay?.classList.remove('opacity-100');
+      overlay?.classList.add('pointer-events-none');
+      mobileMenu?.classList.add('-translate-x-full');
+      
+      mobileLinks.forEach(link => {
+         link?.classList.add('translate-x-[-20px]', 'opacity-0');
+         link?.classList.remove('translate-x-0', 'opacity-100');
+      });
+
+      setTimeout(() => {
+        overlay?.classList.add('hidden');
+        isTransitioning = false;
+      }, 500);
+      
+      document.body.style.overflow = '';
+    }
+
+    // Limpiar listeners previos si existieran (aunque en cada page-load los elementos suelen ser nuevos)
+    toggleBtn.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    overlay?.addEventListener('click', closeMenu);
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Mobile Submenu Toggles
+    const subMenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+    subMenuToggles.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parent = btn.closest('.mobile-nav-item');
+        const subMenu = parent?.querySelector('.mobile-submenu');
+        const arrow = btn.querySelector('svg');
+        
+        subMenu?.classList.toggle('hidden');
+        arrow?.classList.toggle('rotate-180');
+      });
+    });
+
+    // Scroll visibility logic
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        headerContainer?.classList.remove('bg-white/80');
+        headerContainer?.classList.add('bg-white/95', 'shadow-lg', 'border-b-secondary/5');
+      } else {
+        headerContainer?.classList.add('bg-white/80');
+        headerContainer?.classList.remove('bg-white/95', 'shadow-lg', 'border-b-secondary/5');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+  }
+
+  // En Astro con View Transitions, 'astro:page-load' se dispara en carga inicial y cada navegación.
+  document.addEventListener('astro:page-load', initHeader);
 </script>
 
 <style>

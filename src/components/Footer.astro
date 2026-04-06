@@ -1,89 +1,149 @@
 ---
 const footerLinks = {
   about: [
-    { name: 'Nuestra Misión', href: '#mision' },
-    { name: 'El Equipo', href: '#equipo' },
-    { name: 'Impacto Ambiental', href: '#impacto' },
+    { name: 'Nuestra Misión', href: '/#mision' },
+    { name: 'El Equipo', href: '/#equipo' },
+    { name: 'Impacto Ambiental', href: '/#impacto' },
   ],
   resources: [
-    { name: 'Publicaciones', href: '/publicaciones' },
-    { name: 'Revista E&T', href: '/revista' },
-    { name: 'Podcast', href: '/podcast' },
+    { name: 'Publicaciones', href: '/idi/centro#revistas' },
+    { name: 'Podcast', href: '/#podcast' },
+    { name: 'Proyectos', href: '/#proyectos' },
   ],
   social: [
-    { name: 'Instagram', icon: 'instagram', href: 'https://instagram.com/environmentytec' },
-    { name: 'Facebook', icon: 'facebook', href: '#' },
-    { name: 'LinkedIn', icon: 'linkedin', href: '#' },
-    { name: 'Twitter', icon: 'twitter', href: '#' },
+    { 
+      name: 'Instagram', 
+      href: 'https://www.instagram.com/environmentytec/',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`
+    },
+    { 
+      name: 'X', 
+      href: 'https://x.com/environmentytec',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>`
+    },
+    { 
+      name: 'LinkedIn', 
+      href: 'https://www.linkedin.com/in/environmentytec/',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`
+    },
+    { 
+      name: 'Facebook', 
+      href: 'https://www.facebook.com/environmentytec',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`
+    },
+    { 
+      name: 'YouTube', 
+      href: 'https://youtube.com/channel/UCbBo5sphz36b1u72ovJf9fg?reload=9',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/></svg>`
+    },
+    { 
+      name: 'WhatsApp', 
+      href: 'https://api.whatsapp.com/send?phone=573042247552&text=Hola',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.301-.15-1.767-.872-2.04-.971-.272-.1-.47-.15-.668.15-.198.3-.765.971-.938 1.171-.173.2-.347.225-.648.075-.301-.15-1.27-.468-2.42-1.493-.894-.798-1.5-1.783-1.674-2.083-.173-.3-.018-.462.131-.611.135-.134.3-.347.45-.521.15-.174.198-.298.3-.497.102-.199.05-.373-.025-.523-.075-.149-.669-1.612-.916-2.212-.24-.58-.485-.5-.668-.51-.173-.01-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.298-1.04 1.018-1.04 2.481 0 1.463 1.065 2.877 1.213 3.076.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.768-.721 2.016-1.415.247-.694.247-1.289.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.414 0 .018 5.396.015 12.03a11.81 11.81 0 0 0 1.592 5.95L0 24l6.117-1.605a11.75 11.75 0 0 0 5.933 1.605h.005c6.634 0 12.032-5.396 12.035-12.032a11.76 11.76 0 0 0-3.414-8.508"/></svg>`
+    }
   ]
 };
 ---
 
-<footer class="bg-slate-900 border-t border-slate-800 pt-24 pb-12 px-6 overflow-hidden">
+<footer class="bg-slate-950 border-t border-white/5 pt-32 pb-16 px-6 overflow-hidden relative">
+  <!-- Dynamic Glow Background -->
+  <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+  <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
   <div class="container mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20 relative">
-      <!-- Decorative Element -->
-      <div class="absolute -top-12 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
       
-      <div class="md:col-span-5 pr-8">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-xl shadow-primary/20">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 5.9a7 7 0 1 1-9 12.1z"/><path d="M11 20v-3a2 2 0 0 1 4 0v3"/></svg>
+      <!-- Brand Identity -->
+      <div class="md:col-span-4 lg:col-span-5">
+        <div class="flex items-center gap-4 mb-10 group">
+          <div class="w-12 h-12 bg-secondary rounded-[1.25rem] flex items-center justify-center text-white shadow-2xl shadow-secondary/20 group-hover:rotate-6 transition-transform duration-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 5.9a7 7 0 1 1-9 12.1z"/></svg>
           </div>
-          <span class="text-white font-display font-black text-xl tracking-tight">ETF Foundation</span>
+          <div class="flex flex-col">
+            <span class="text-white font-display font-black text-lg leading-none tracking-tight">ETF FOUNDATION</span>
+            <span class="text-primary font-display text-[10px] font-bold tracking-[0.3em] uppercase mt-1">Regenerative Tech</span>
+          </div>
         </div>
-        <p class="text-slate-400 text-base leading-relaxed max-w-sm mb-10 font-medium">
-          Impulsando la convergencia entre la tecnología de vanguardia y la conservación ambiental para un futuro regenerativo.
+        
+        <p class="text-slate-400 text-lg leading-relaxed max-w-sm mb-12 font-medium">
+          Dedicados a la investigación y desarrollo socioambiental mediante la tecnociencia aplicada.
         </p>
-        <div class="flex gap-4">
+
+        <!-- Social Grids -->
+        <div class="flex flex-wrap gap-4">
           {footerLinks.social.map(item => (
-            <a href={item.href} class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-primary transition-all duration-300">
-              <span class="sr-only">{item.name}</span>
-              <div class="w-1.5 h-1.5 rounded-full bg-current"></div>
+            <a 
+              href={item.href} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
+              title={item.name}
+            >
+              <span class="flex items-center justify-center" set:html={item.icon} />
             </a>
           ))}
         </div>
       </div>
       
-      <div class="md:col-span-2">
-        <h4 class="text-white font-display font-black uppercase tracking-widest text-xs mb-8">Explora</h4>
-        <ul class="space-y-4">
+      <!-- Links Columns -->
+      <div class="md:col-span-2 lg:col-span-2">
+        <h4 class="text-white font-black uppercase tracking-[0.2em] text-[10px] mb-10 pb-4 border-b border-white/5">Explora</h4>
+        <ul class="space-y-6">
           {footerLinks.about.map(link => (
-            <li><a href={link.href} class="text-slate-400 hover:text-primary transition-colors text-sm font-bold tracking-tight">{link.name}</a></li>
+            <li><a href={link.href} class="text-slate-500 hover:text-white transition-colors text-sm font-bold tracking-tight block">{link.name}</a></li>
           ))}
         </ul>
       </div>
 
-      <div class="md:col-span-2">
-        <h4 class="text-white font-display font-black uppercase tracking-widest text-xs mb-8">Recursos</h4>
-        <ul class="space-y-4">
+      <div class="md:col-span-2 lg:col-span-2">
+        <h4 class="text-white font-black uppercase tracking-[0.2em] text-[10px] mb-10 pb-4 border-b border-white/5">Recursos</h4>
+        <ul class="space-y-6">
           {footerLinks.resources.map(link => (
-            <li><a href={link.href} class="text-slate-400 hover:text-primary transition-colors text-sm font-bold tracking-tight">{link.name}</a></li>
+            <li><a href={link.href} class="text-slate-500 hover:text-white transition-colors text-sm font-bold tracking-tight block">{link.name}</a></li>
           ))}
         </ul>
       </div>
 
-      <div class="md:col-span-3">
-        <h4 class="text-white font-display font-black uppercase tracking-widest text-xs mb-8">Ubicación</h4>
-        <p class="text-slate-400 text-sm font-bold leading-loose mb-2">
-          Cereté, Córdoba, Colombia<br/>
-          Barrio Las Américas. Cra 8, Calle 23.
-        </p>
-        <div class="mt-6 pt-6 border-t border-slate-800">
-          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1 font-black">Contacto Directo</p>
-          <p class="text-primary font-black tracking-tight underline decoration-primary/30 underline-offset-8">etf_@environmenttechnologyfoundation.org</p>
+      <!-- Contact Column -->
+      <div class="md:col-span-4 lg:col-span-3">
+        <h4 class="text-white font-black uppercase tracking-[0.2em] text-[10px] mb-10 pb-4 border-b border-white/5">Conecta</h4>
+        <div class="space-y-8">
+          <div>
+             <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary mb-3">WhatsApp Oficial</p>
+             <a href="https://api.whatsapp.com/send?phone=573042247552" target="_blank" class="text-white font-black text-lg hover:text-primary transition-colors tracking-tight block">
+                (+57) 304 224 7552
+             </a>
+          </div>
+          <div>
+             <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 mb-3">Sede Central</p>
+             <p class="text-slate-400 text-sm font-bold leading-relaxed mb-4">
+                Cereté, Córdoba, Colombia<br/>
+                Barrio Las Américas. Cra 8, Calle 23.
+             </p>
+          </div>
+          <div class="pt-6 border-t border-white/5">
+            <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary mb-3">Correo Electrónico</p>
+            <p class="text-white text-sm font-black tracking-tight break-all">etf_@environmenttechnologyfoundation.org</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Legal and Bottom -->
-    <div class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">
-      <p>&copy; {new Date().getFullYear()} ENVIRONMENT & TECHNOLOGY FOUNDATION - ECO-TECH REGENERATION</p>
-      <div class="flex gap-8">
-        <a href="#" class="hover:text-white transition-colors">Privacidad</a>
-        <a href="#" class="hover:text-white transition-colors">Términos</a>
-        <a href="#" class="hover:text-white transition-colors">Cookies</a>
+    <!-- Copyright & Legal -->
+    <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+      <p class="text-[10px] text-slate-600 font-bold uppercase tracking-[0.2em]">
+        &copy; {new Date().getFullYear()} ETF FOUNDATION. TODOS LOS DERECHOS RESERVADOS.
+      </p>
+      <div class="flex gap-10">
+        <a href="/privacidad" class="text-[10px] text-slate-600 hover:text-white font-bold uppercase tracking-[0.2em] transition-colors">Privacidad</a>
+        <a href="/terminos" class="text-[10px] text-slate-600 hover:text-white font-bold uppercase tracking-[0.2em] transition-colors">Términos y Condiciones</a>
       </div>
     </div>
   </div>
 </footer>
+
+<style>
+  footer {
+    backdrop-filter: blur(20px);
+  }
+</style>
