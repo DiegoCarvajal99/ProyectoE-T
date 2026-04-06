@@ -667,22 +667,29 @@ const allies = [
 </Layout>
 
 <script>
-  const toggleBtn = document.querySelector('#toggle-team');
-  const extendedTeamContainer = document.querySelector('#extended-team-container');
+  function setupTeamToggle() {
+    const toggleBtn = document.querySelector('#toggle-team');
+    const extendedTeamContainer = document.querySelector('#extended-team-container');
 
-  toggleBtn?.addEventListener('click', () => {
-    const isExpanded = extendedTeamContainer?.style.gridTemplateRows === '1fr';
-    
-    if (isExpanded) {
-      extendedTeamContainer.style.gridTemplateRows = '0fr';
-      extendedTeamContainer.style.opacity = '0';
-      toggleBtn.textContent = 'Ver todo el equipo';
-    } else {
-      extendedTeamContainer.style.gridTemplateRows = '1fr';
-      extendedTeamContainer.style.opacity = '1';
-      toggleBtn.textContent = 'Mostrar menos';
-    }
-  });
+    toggleBtn?.addEventListener('click', () => {
+      const isExpanded = extendedTeamContainer.getAttribute('data-expanded') === 'true';
+      
+      if (isExpanded) {
+        extendedTeamContainer.style.gridTemplateRows = '0fr';
+        extendedTeamContainer.style.opacity = '0';
+        toggleBtn.textContent = 'Ver todo el equipo';
+        extendedTeamContainer.setAttribute('data-expanded', 'false');
+      } else {
+        extendedTeamContainer.style.gridTemplateRows = '1fr';
+        extendedTeamContainer.style.opacity = '1';
+        toggleBtn.textContent = 'Mostrar menos';
+        extendedTeamContainer.setAttribute('data-expanded', 'true');
+      }
+    });
+  }
+
+  // Runs on initial load and after navigation with View Transitions
+  document.addEventListener('astro:page-load', setupTeamToggle);
 </script>
 
 <style>
