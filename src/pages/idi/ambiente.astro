@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+
+const researchLines = [
+  { title: 'Análisis Integrado del Territorio', desc: 'Estudio sistémico de las dinámicas geográficas y sociales para la planificación sostenible.' },
+  { title: 'Gestión Ambiental', desc: 'Desarrollo de modelos y estrategias para la conservación de ecosistemas estratégicos.' },
+  { title: 'Tecnologías Aplicadas al Ambiente', desc: 'Uso de IoT, Drones y Sensores para el monitoreo en tiempo real de variables críticas.' }
+];
+---
+
+<Layout title="Ambiente y Tecnología | Grupo de Investigación ETF">
+  <main>
+    <!-- Hero Section: Full Height -->
+    <section class="relative min-h-screen flex items-center bg-slate-950 overflow-hidden pt-20">
+      <div class="absolute inset-0 opacity-20">
+        <img 
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+          alt="Ambiente y Tecnología" 
+          class="w-full h-full object-cover grayscale brightness-50"
+        />
+      </div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center gap-3 bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 px-4 py-2 rounded-full mb-8">
+            <span class="text-emerald-400 text-[10px] font-black uppercase tracking-widest">Sinergia Territorial</span>
+          </div>
+          <h1 class="text-5xl md:text-8xl font-black text-white mb-8 tracking-tightest leading-tight">
+            Ambiente y <br/> <span class="text-gradient">Tecnología</span>
+          </h1>
+          <p class="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mb-12">
+            Desde 2010, investigamos la interacción entre la conservación ambiental y el desarrollo tecnológico para la protección de ecosistemas estratégicos.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+             <Button variant="primary" size="lg" href="https://scienti.minciencias.gov.co/gruplac/jsp/visualiza/visualizagr.jsp?nro=00000000010468" target="_blank" rel="noopener noreferrer">
+                Ver Perfil Gruplac
+             </Button>
+             <Button variant="outline" size="lg" href="https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000776424" target="_blank" rel="noopener noreferrer" class="text-white border-white/20 hover:bg-white/10">
+                Líder: Maritza Arévalo
+             </Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+         <span class="text-[9px] font-black text-white/30 uppercase tracking-[0.3em]">Conocer más</span>
+         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="py-32 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row gap-20 items-start">
+          <div class="lg:w-1/2 reveal">
+            <SectionHeader 
+              tag="Efoque de Investigación"
+              title="Tecnología al Servicio de la Tierra"
+              subtitle="Coordinamos esfuerzos para entender y mitigar los impactos antropogénicos mediante ciencia aplicada."
+              centered={false}
+            />
+            <p class="text-lg text-slate-600 leading-relaxed font-medium mb-8">
+              Liderado por la investigadora <a href="https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000776424" target="_blank" class="text-emerald-600 font-bold hover:underline decoration-emerald-200 underline-offset-4 pointer-events-none">Maritza Arévalo</a>, este grupo se especializa en la monitorización de cuencas hidrográficas, el seguimiento de la deforestación y la implementación de soluciones basadas en la naturaleza.
+            </p>
+            <div class="flex items-center gap-6 p-8 bg-emerald-50 rounded-[3rem] border border-emerald-100">
+               <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-lg text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+               </div>
+               <div>
+                  <p class="text-slate-900 font-black text-lg">Categoría C</p>
+                  <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Ranking MinCiencias</p>
+               </div>
+            </div>
+          </div>
+          
+          <div class="lg:w-1/2 space-y-6 reveal">
+            <h3 class="text-2xl font-black text-slate-900 mb-10 tracking-tightest px-4">Líneas de Investigación</h3>
+            {researchLines.map(line => (
+              <div class="p-8 rounded-[3rem] bg-slate-50 border border-slate-100 group hover:border-primary/20 transition-all">
+                <div class="flex items-start gap-6">
+                   <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                   </div>
+                   <div>
+                      <h4 class="text-slate-900 font-black text-lg mb-2 tracking-tight">{line.title}</h4>
+                      <p class="text-slate-500 text-sm leading-relaxed font-medium">{line.desc}</p>
+                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

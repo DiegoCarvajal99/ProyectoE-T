@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+
+const mainActivities = [
+  { title: 'Cooperación Técnica', desc: 'Suscripción de convenios nacionales e internacionales de cooperación técnico-científica.' },
+  { title: 'Gestión Editorial', desc: 'Soporte a revistas científicas indexadas como Environment & Technology y Mimesis.' },
+  { title: 'Divulgación de Resultados', desc: 'Gestión del sello editorial propio para la difusión de nuevo conocimiento.' },
+  { title: 'Solución de Problemáticas', desc: 'Enfoque en la resolución de desafíos socioambientales mediante tecnociencia.' }
+];
+---
+
+<Layout title="Centro de Investigación E&T | ETF Foundation">
+  <main>
+    <!-- Hero Section: Full Height -->
+    <section class="relative min-h-screen flex items-center bg-slate-950 overflow-hidden pt-20">
+      <div class="absolute inset-0 opacity-20">
+        <img 
+          src="https://images.unsplash.com/photo-1532187875605-186c7131ef24?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+          alt="Centro de Investigación" 
+          class="w-full h-full object-cover grayscale brightness-50"
+        />
+      </div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center gap-3 bg-primary/20 backdrop-blur-md border border-primary/30 px-4 py-2 rounded-full mb-8">
+            <span class="text-primary text-[10px] font-black uppercase tracking-widest">Excelencia Científica</span>
+          </div>
+          <h1 class="text-5xl md:text-8xl font-black text-white mb-8 tracking-tightest leading-tight">
+            Centro de <br/> Investigación <span class="text-gradient">E&T</span>
+          </h1>
+          <p class="text-xl text-slate-300 font-medium leading-relaxed max-w-2xl mb-12">
+            El núcleo técnico-científico de ETF, dedicado al fortalecimiento de la tecnociencia regional y la transferencia tecnológica global.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+             <Button variant="primary" size="lg" href="https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001526397" target="_blank" rel="noopener noreferrer">
+                Director de Investigación
+             </Button>
+             <Button variant="outline" size="lg" href="https://revistaet.environmenttechnologyfoundation.org/" target="_blank" rel="noopener noreferrer" class="text-white border-white/20 hover:bg-white/10">
+                Gestión Editorial OJS
+             </Button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+         <span class="text-[9px] font-black text-white/30 uppercase tracking-[0.3em]">Explorar</span>
+         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="py-32 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+          <div class="reveal">
+            <SectionHeader 
+              tag="Nuestra Misión"
+              title="Fortaleciendo la Tecnociencia"
+              subtitle="Promovemos investigaciones interdisciplinarias que generen desarrollo tecnológico con un alto sentido de responsabilidad social."
+              centered={false}
+            />
+            <p class="text-lg text-slate-600 leading-relaxed font-medium mb-8">
+              Bajo la dirección del Dr. <a href="https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001526397" target="_blank" class="text-primary hover:underline decoration-primary/30 underline-offset-4 font-black">Massimo Leserri</a>, el Centro de Investigación E&T (CIE&T) actúa como el núcleo de nuestra actividad académica, facilitando la sinergia entre científicos, instituciones y el territorio para coadyuvar en un desarrollo regional equilibrado.
+            </p>
+            <div class="bg-emerald-50 p-8 rounded-[3rem] border border-emerald-100 flex items-center gap-6">
+               <div class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-lg text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+               </div>
+               <div>
+                  <p class="text-slate-900 font-black text-xl tracking-tight">Categoría C</p>
+                  <p class="text-slate-500 text-sm font-bold uppercase tracking-widest leading-none">MinCiencias Colombia</p>
+               </div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal">
+            {mainActivities.map(activity => (
+              <div class="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all group">
+                <h4 class="text-slate-900 font-black text-lg mb-4 tracking-tight group-hover:text-primary transition-colors">{activity.title}</h4>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">{activity.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journals Link -->
+    <section class="py-32 bg-slate-50">
+       <div class="container mx-auto px-6 text-center reveal">
+          <SectionHeader 
+             tag="Divulgación"
+             title="Repositorio Científico"
+             subtitle="Gestión editorial de alto impacto para la conectividad de la comunidad global."
+          />
+          <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-16">
+             <div class="p-10 rounded-[3.5rem] bg-white shadow-sm border border-slate-100 flex flex-col items-center">
+                <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400 mb-6">01</div>
+                <h4 class="text-xl font-bold mb-4">Revista E&T</h4>
+                <p class="text-slate-500 text-sm mb-8 leading-relaxed font-medium px-4">Journal dedicado a las ciencias ambientales y la innovación tecnológica regional.</p>
+                <Button variant="outline" size="sm" href="https://revistaet.environmenttechnologyfoundation.org/" target="_blank" rel="noopener noreferrer">Explorar OJS</Button>
+             </div>
+             <div class="p-10 rounded-[3.5rem] bg-white shadow-sm border border-slate-100 flex flex-col items-center">
+                <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400 mb-6">02</div>
+                <h4 class="text-xl font-bold mb-4">Revista Mimesis</h4>
+                <p class="text-slate-500 text-sm mb-8 leading-relaxed font-medium px-4">Enfoque en arquitectura, urbanismo y ciencia de la representación aplicada.</p>
+                <Button variant="outline" size="sm" href="https://mimesis.environmenttechnologyfoundation.org/" target="_blank" rel="noopener noreferrer">Ver Publicaciones</Button>
+             </div>
+          </div>
+       </div>
+    </section>
+  </main>
+</Layout>
