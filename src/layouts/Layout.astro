@@ -15,11 +15,11 @@ const {
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth overflow-x-hidden">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | ETF Foundation</title>
@@ -31,7 +31,7 @@ const {
 		
 		<ClientRouter />
 	</head>
-	<body class="min-h-screen bg-white font-sans text-slate-900 overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+	<body class="min-h-screen bg-white font-sans text-slate-900 overflow-x-hidden selection:bg-primary/20 selection:text-primary max-w-full w-full">
 		<Header />
 		<main>
 			<slot />

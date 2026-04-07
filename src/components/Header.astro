@@ -104,7 +104,7 @@ const icons = {
     </nav>
 
     <!-- Mobile Menu Button (Hamburger) -->
-    <button id="menu-toggle" class="lg:hidden p-3 text-slate-800 hover:bg-slate-50 rounded-xl transition-colors relative z-[110]" aria-label="Menu">
+    <button id="menu-toggle" class="lg:hidden p-3 text-slate-800 hover:bg-slate-50 rounded-xl transition-colors relative z-[210]" aria-label="Menu">
       <div id="hamburger-icon" class="transition-transform duration-300">
          <Fragment set:html={icons.menu} />
       </div>
@@ -112,9 +112,9 @@ const icons = {
   </div>
 
   <!-- Mobile Drawer: Slide from LEFT -->
-  <div id="mobile-overlay" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-[105] hidden opacity-0 transition-opacity duration-500"></div>
+  <div id="mobile-overlay" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-500"></div>
   
-  <div id="mobile-menu" class="fixed top-0 left-0 bottom-0 w-[80%] max-w-[320px] bg-white z-[110] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col p-8 shadow-2xl">
+  <div id="mobile-menu" class="fixed top-0 left-0 bottom-0 w-[85%] max-w-[340px] bg-white z-[210] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col p-8 shadow-2xl">
     <div class="flex items-center justify-between mb-12">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center text-white">

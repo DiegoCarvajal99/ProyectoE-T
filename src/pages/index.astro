@@ -161,7 +161,7 @@ const allies = [
         <span class="text-white text-[10px] font-black uppercase tracking-[0.25em]">Vanguardia en Sostenibilidad</span>
       </div>
       
-      <h1 class="text-4xl md:text-6xl font-black text-white mb-14 max-w-5xl mx-auto tracking-tightest leading-[1.1] drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+      <h1 class="text-[1.65rem] xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-14 max-w-5xl mx-auto tracking-tight sm:tracking-tighter lg:tracking-tightest leading-[1.2] lg:leading-[1.1] drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] [hyphens:auto] [word-break:break-word] break-words">
         Somos una organización sin ánimo de lucro dedicada a la <span class="text-gradient">investigación, desarrollo e innovación (I+D+i)</span> en las áreas ambiental y tecnológica.
       </h1>
       
@@ -506,7 +506,7 @@ const allies = [
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:grid-flow-row-dense">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map(project => (
           <ProjectCard {...project}>
             <Fragment slot="icon" set:html={project.icon} />
@@ -671,7 +671,15 @@ const allies = [
     const toggleBtn = document.querySelector('#toggle-team');
     const extendedTeamContainer = document.querySelector('#extended-team-container');
 
-    toggleBtn?.addEventListener('click', () => {
+    if (!toggleBtn || !extendedTeamContainer) return;
+
+    // Reset state on initial load to avoid ghost bugs from View Transitions cache
+    extendedTeamContainer.style.gridTemplateRows = '0fr';
+    extendedTeamContainer.style.opacity = '0';
+    extendedTeamContainer.setAttribute('data-expanded', 'false');
+    toggleBtn.textContent = 'Ver todo el equipo';
+
+    toggleBtn.addEventListener('click', () => {
       const isExpanded = extendedTeamContainer.getAttribute('data-expanded') === 'true';
       
       if (isExpanded) {
