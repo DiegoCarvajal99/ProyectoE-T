@@ -15,7 +15,7 @@ const { title, subtitle, tag, centered = true, light = false } = Astro.props;
     <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
     {tag}
   </div>
-  <h2 class:list={["text-5xl md:text-6xl font-black mb-8 tracking-tightest leading-[1.05]", light ? "text-white" : "text-slate-900"]}>
+  <h2 class:list={["text-4xl sm:text-5xl md:text-6xl font-black mb-8 tracking-tightest leading-[1.05] break-words sm:hyphens-none hyphens-auto", light ? "text-white" : "text-slate-900"]}>
     {title}
   </h2>
   <p class:list={["text-lg font-medium leading-relaxed", light ? "text-slate-400" : "text-slate-500"]}>

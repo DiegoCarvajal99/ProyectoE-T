@@ -15,11 +15,14 @@ const { name, role, degree, description, image, main = false } = Astro.props;
   "group relative overflow-hidden rounded-[2.5rem] transition-all duration-700",
   main ? "bg-white p-10 border border-slate-100/50 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20" : "bg-slate-50/50 p-8 border border-slate-100 hover:bg-white hover:shadow-xl hover:border-primary/10"
 ]}>
-  <div class="flex items-start gap-8">
+  <div class:list={[
+    "flex gap-8",
+    main ? "flex-col md:flex-row items-center md:items-start text-center md:text-left" : "items-start flex-row"
+  ]}>
     <!-- Profile Image/Placeholder -->
     <div class:list={[
       "relative flex-shrink-0 overflow-hidden",
-      main ? "w-32 h-32 rounded-3xl" : "w-16 h-16 rounded-2xl"
+      main ? "w-32 h-32 md:w-32 md:h-32 rounded-3xl" : "w-16 h-16 rounded-2xl"
     ]}>
       {image ? (
         <img src={image} alt={name} class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
@@ -43,7 +46,7 @@ const { name, role, degree, description, image, main = false } = Astro.props;
       </div>
       
       {main && (
-        <p class="text-slate-500 text-sm font-medium leading-relaxed mb-6">
+        <p class="text-slate-500 text-sm font-medium leading-relaxed mb-6 text-justify">
           {description}
         </p>
       )}
