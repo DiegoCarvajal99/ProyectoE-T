@@ -89,7 +89,7 @@ const archiveEpisodes = allEpisodes.slice(1);
           <div class="relative reveal delay-300">
              <div class="absolute -inset-10 bg-indigo-500/20 blur-[60px] rounded-full"></div>
              <!-- Featured Card -->
-             <div class="relative bg-white/10 backdrop-blur-2xl border border-white/20 p-10 rounded-[3.5rem] shadow-2xl">
+             <div class="relative bg-white/10 backdrop-blur-2xl border border-white/20 p-6 md:p-10 rounded-3xl md:rounded-[3.5rem] shadow-2xl">
                 <div class="flex items-center gap-4 mb-8">
                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/30 flex items-center justify-center text-indigo-300" set:html={featuredEpisode.icon} />
                    <div>
@@ -99,7 +99,7 @@ const archiveEpisodes = allEpisodes.slice(1);
                 </div>
                 <h3 class="text-3xl font-black text-white mb-6 tracking-tight leading-tight">{featuredEpisode.title}</h3>
                 <p class="text-slate-400 mb-10 leading-relaxed font-medium">{featuredEpisode.description}</p>
-                <div class="rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                <div class="rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
                    <iframe 
                       style="border-radius:0px" 
                       src={`https://open.spotify.com/embed/episode/${featuredEpisode.id}?utm_source=generator&theme=0`} 
@@ -131,7 +131,7 @@ const archiveEpisodes = allEpisodes.slice(1);
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
           {allEpisodes.map((episode, index) => (
-            <div class={`group relative bg-white/60 backdrop-blur-xl p-10 rounded-[4rem] border border-white shadow-xl shadow-indigo-100/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal delay-${(index + 1) * 100}`}>
+            <div class={`group relative bg-white/60 backdrop-blur-xl p-5 md:p-10 rounded-3xl md:rounded-[4rem] border border-white shadow-xl shadow-indigo-100/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal delay-${(index + 1) * 100}`}>
                <!-- Topic Label -->
                <div class="absolute -top-4 -right-4 px-6 py-2 bg-indigo-600 rounded-full shadow-xl shadow-indigo-200 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                   <span class="text-white text-[10px] font-black uppercase tracking-widest">{episode.category}</span>
@@ -145,7 +145,7 @@ const archiveEpisodes = allEpisodes.slice(1);
                   </div>
                </div>
                
-               <div class="rounded-[2.5rem] overflow-hidden bg-slate-900 shadow-2xl ring-8 ring-white/50 group-hover:ring-indigo-100 transition-all duration-500">
+               <div class="rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-slate-900 shadow-2xl ring-[4px] md:ring-8 ring-white/50 group-hover:ring-indigo-100 transition-all duration-500 min-h-[152px]">
                   <iframe 
                     style="border-radius:0px" 
                     src={`https://open.spotify.com/embed/episode/${episode.id}?utm_source=generator&theme=0`} 
