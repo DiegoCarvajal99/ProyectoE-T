@@ -288,19 +288,7 @@ const icons = {
       link.addEventListener('click', closeMenu);
     });
 
-    // Mobile Submenu Toggles
-    const subMenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
-    subMenuToggles.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const parent = btn.closest('.mobile-nav-item');
-        const subMenu = parent?.querySelector('.mobile-submenu');
-        const arrow = btn.querySelector('svg');
-        
-        subMenu?.classList.toggle('hidden');
-        arrow?.classList.toggle('rotate-180');
-      });
-    });
+    // End of InitHeader
 
     // Scroll visibility logic
     const handleScroll = () => {
