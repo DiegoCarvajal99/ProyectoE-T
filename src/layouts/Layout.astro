@@ -31,16 +31,38 @@ const {
 		
 		<ClientRouter />
 	</head>
-	<body class="min-h-screen bg-white font-sans text-slate-900 overflow-x-hidden selection:bg-primary/20 selection:text-primary max-w-full w-full">
+	<body class="min-h-screen bg-white font-sans text-slate-900 overflow-x-hidden selection:bg-primary/20 selection:text-primary max-w-full w-full relative">
 		<Header />
 		<main>
 			<slot />
 		</main>
 		<Footer />
+		
+		<!-- Hidden Google Translate Element -->
+		<div id="google_translate_element" style="display:none;"></div>
+		<script is:inline type="text/javascript">
+			function googleTranslateElementInit() {
+				new google.translate.TranslateElement({
+					pageLanguage: 'es', 
+					includedLanguages: 'es,en,it', 
+					autoDisplay: false
+				}, 'google_translate_element');
+			}
+		</script>
+		<script is:inline type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	</body>
 </html>
 
 <style is:global>
+	/* Google Translate UI Overrides */
+	body > .skiptranslate { display: none !important; }
+	body { top: 0px !important; }
+	.goog-te-banner-frame { display: none !important; }
+	#goog-gt-tt, .goog-tooltip, .goog-tooltip:hover { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+	.goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; outline: none !important; text-shadow: none !important; }
+	font { background: transparent !important; background-color: transparent !important; box-shadow: none !important; }
+	.goog-text-highlight:hover { background-color: transparent !important; box-shadow: none !important; }
+
 	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Montserrat', sans-serif;
 		letter-spacing: -0.05em;
