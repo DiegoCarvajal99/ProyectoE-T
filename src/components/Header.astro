@@ -114,12 +114,30 @@ const icons = {
       <Button variant="primary" size="sm" href="#donar" class="ml-4 rounded-xl px-6">Donar</Button>
     </nav>
 
-    <!-- Mobile Menu Button (Hamburger) -->
-    <button id="menu-toggle" class="lg:hidden p-3 text-slate-800 hover:bg-slate-50 rounded-xl relative z-[210]" aria-label="Menu">
-      <div id="hamburger-icon">
-         <Fragment set:html={icons.menu} />
+    <!-- Mobile Actions (Lang + Hamburger) -->
+    <div class="flex items-center gap-1 lg:hidden">
+      <!-- Lang Switcher Mobile Dropdown -->
+      <div class="relative flex items-center z-[220]">
+        <button id="mobile-lang-toggle" onclick="toggleMobileLang(event)" aria-label="Cambiar Idioma" class="flex items-center gap-1 text-slate-500 transition-colors text-[10px] font-bold uppercase tracking-widest p-2 rounded-xl bg-slate-50/50 hover:bg-slate-100">
+          <span class="active-lang-text">ES</span>
+          <svg id="mobile-lang-arrow" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div id="mobile-lang-dropdown" class="absolute top-[40px] right-0 w-32 bg-white/95 backdrop-blur-xl border border-slate-100 shadow-2xl rounded-2xl p-2 transition-all duration-300 opacity-0 invisible translate-y-2">
+          <div class="flex flex-col gap-1">
+            <button onclick="changeGTranslate('es')" class="text-left px-3 py-2 hover:bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><span class="text-base grayscale hover:grayscale-0">🇪🇸</span> Español</button>
+            <button onclick="changeGTranslate('en')" class="text-left px-3 py-2 hover:bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><span class="text-base grayscale hover:grayscale-0">🇺🇸</span> English</button>
+            <button onclick="changeGTranslate('it')" class="text-left px-3 py-2 hover:bg-slate-50 rounded-xl text-xs font-bold text-slate-600 hover:text-primary transition-colors flex items-center gap-2"><span class="text-base grayscale hover:grayscale-0">🇮🇹</span> Italiano</button>
+          </div>
+        </div>
       </div>
-    </button>
+
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button id="menu-toggle" class="p-2 text-slate-800 hover:bg-slate-50 rounded-xl relative z-[220]" aria-label="Menu">
+        <div id="hamburger-icon">
+           <Fragment set:html={icons.menu} />
+        </div>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Drawer: Slide from LEFT -->
@@ -184,13 +202,6 @@ const icons = {
     </nav>
     
     <div class="mt-auto pt-8 border-t border-slate-100 flex flex-col gap-4">
-       <!-- Lang Switcher Mobile -->
-       <div class="grid grid-cols-3 gap-2 bg-slate-50 p-1.5 rounded-2xl">
-         <button onclick="changeGTranslate('es')" class="py-2 flex items-center justify-center gap-1.5 rounded-xl border border-transparent active-lang-btn text-xs font-bold transition-all text-slate-400 hover:text-slate-900" data-lang="ES">🇪🇸 ES</button>
-         <button onclick="changeGTranslate('en')" class="py-2 flex items-center justify-center gap-1.5 rounded-xl border border-transparent active-lang-btn text-xs font-bold transition-all text-slate-400 hover:text-slate-900" data-lang="EN">🇺🇸 EN</button>
-         <button onclick="changeGTranslate('it')" class="py-2 flex items-center justify-center gap-1.5 rounded-xl border border-transparent active-lang-btn text-xs font-bold transition-all text-slate-400 hover:text-slate-900" data-lang="IT">🇮🇹 IT</button>
-       </div>
-
        <Button variant="primary" size="lg" href="#donar" class="w-full">Donar Ahora</Button>
        <p class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-300 text-center">Environment & Tech</p>
     </div>
@@ -259,10 +270,19 @@ const icons = {
       document.body.style.overflow = '';
     }
 
-    // Limpiar listeners previos si existieran (aunque en cada page-load los elementos suelen ser nuevos)
-    toggleBtn.addEventListener('click', openMenu);
-    closeBtn?.addEventListener('click', closeMenu);
-    overlay?.addEventListener('click', closeMenu);
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const isCurrentlyOpen = !mobileMenu?.classList.contains('-translate-x-full');
+        if (isCurrentlyOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
 
     mobileLinks.forEach(link => {
       link.addEventListener('click', closeMenu);
@@ -319,23 +339,47 @@ const icons = {
       const match = document.cookie.match(/googtrans=\/es\/([a-z]{2})/);
       const activeLang = match ? match[1].toUpperCase() : 'ES';
       
-      // Actualizar texto desktop
+      // Actualizar texto desktop y móvil
       document.querySelectorAll('.active-lang-text').forEach(el => el.innerText = activeLang);
-
-      // Actualizar botones mobile
-      document.querySelectorAll('.active-lang-btn').forEach(btn => {
-         if(btn.dataset.lang === activeLang) {
-            btn.classList.add('bg-white', 'shadow-sm', 'border-slate-100', 'text-primary');
-            btn.classList.remove('text-slate-400', 'border-transparent');
-         } else {
-            btn.classList.remove('bg-white', 'shadow-sm', 'border-slate-100', 'text-primary');
-            btn.classList.add('text-slate-400', 'border-transparent');
-         }
-      });
   }
 
   document.addEventListener('DOMContentLoaded', updateActiveLanguageUI);
   document.addEventListener('astro:page-load', updateActiveLanguageUI);
+
+  // Global Mobile Lang Dropdown Logic (Seguro contra re-renders de Astro)
+  window.toggleMobileLang = function(e) {
+      if (e) e.stopPropagation();
+      const dropdown = document.querySelector('#mobile-lang-dropdown');
+      const arrow = document.querySelector('#mobile-lang-arrow');
+      if (!dropdown) return;
+
+      const isOpen = !dropdown.classList.contains('invisible');
+      if (isOpen) {
+          dropdown.classList.replace('opacity-100', 'opacity-0');
+          dropdown.classList.replace('visible', 'invisible');
+          dropdown.classList.replace('translate-y-0', 'translate-y-2');
+          arrow?.classList.remove('rotate-180');
+      } else {
+          dropdown.classList.replace('opacity-0', 'opacity-100');
+          dropdown.classList.replace('invisible', 'visible');
+          dropdown.classList.replace('translate-y-2', 'translate-y-0');
+          arrow?.classList.add('rotate-180');
+      }
+  };
+
+  // Cierre global al clicar fuera
+  document.addEventListener('click', (e) => {
+      const dropdown = document.querySelector('#mobile-lang-dropdown');
+      const toggle = document.querySelector('#mobile-lang-toggle');
+      const arrow = document.querySelector('#mobile-lang-arrow');
+      
+      if (dropdown && toggle && !dropdown.contains(e.target) && !toggle.contains(e.target)) {
+          dropdown.classList.replace('opacity-100', 'opacity-0');
+          dropdown.classList.replace('visible', 'invisible');
+          dropdown.classList.replace('translate-y-0', 'translate-y-2');
+          arrow?.classList.remove('rotate-180');
+      }
+  });
 </script>
 
 <style>
