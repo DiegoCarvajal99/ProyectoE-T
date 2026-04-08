@@ -165,7 +165,7 @@ const icons = {
               {item.name}
             </a>
             {item.submenu && (
-              <button class="mobile-submenu-toggle p-2 text-slate-300" aria-label="Expand submenu">
+              <button onclick="window.toggleMobileSubmenu(event, this)" class="mobile-submenu-toggle p-3 -mr-2 text-slate-400 hover:text-primary transition-colors flex items-center justify-center" aria-label="Expand submenu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><path d="m6 9 6 6 6-6"/></svg>
               </button>
             )}
@@ -380,6 +380,19 @@ const icons = {
           arrow?.classList.remove('rotate-180');
       }
   });
+
+  // Mobile Submenu Dropdown Logic (Seguro contra Astro ViewTransitions)
+  window.toggleMobileSubmenu = function(e, btn) {
+      if (e) e.preventDefault();
+      if (e) e.stopPropagation();
+      const parent = btn.closest('.mobile-nav-item');
+      if (!parent) return;
+      const subMenu = parent.querySelector('.mobile-submenu');
+      const arrow = btn.querySelector('svg');
+      
+      subMenu?.classList.toggle('hidden');
+      arrow?.classList.toggle('rotate-180');
+  };
 </script>
 
 <style>
